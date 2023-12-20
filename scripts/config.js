@@ -6,11 +6,17 @@ function openPlayerConfig() {
 function closePlayerConfig() {
     playerConfigOverlay.style.display = 'none';
     backdropElement.style.display = 'none';
+    formElement.firstElementChild.classList.remove('error');
+    errorsOutput.textContent = '';
 }
 
 function savePlayerConfig(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
-    const enteredPlayerName = FormData.get('playername');
-    console.log(enteredPlayerName)
+    const enteredPlayerName = formData.get('playername').trim();
+    if (!enteredPlayerName) {
+        event.target.firstElementChild.classList.add('error');
+        errorsOutput.textContent = 'Please enter a valid name!';
+        return
+    }
 }
