@@ -1,4 +1,5 @@
 let editedPlayer = 0;
+let activePlayer = 0;
 
 const players = [
     {
@@ -17,12 +18,13 @@ const backdropElement = document.getElementById('backdrop');
 const formElement = document.querySelector('form');
 const errorsOutput = document.getElementById('config-errors');
 const gameAreaElement = document.getElementById('active-game');
+const activePlayerName = document.getElementById('active-player-name');
 
 const editPlayer1Btn = document.getElementById('edit-player-1-btn');
 const editPlayer2Btn = document.getElementById('edit-player-2-btn');
 const cancelConfigBtn = document.getElementById('cancel-config-btn');
 const startNewGameBtn = document.getElementById('start-game-btn');
-
+const gameFieldElements = document.querySelectorAll('#game-board li')
 
 
 editPlayer1Btn.addEventListener('click', openPlayerConfig) 
@@ -34,3 +36,7 @@ backdropElement.addEventListener('click', closePlayerConfig)
 formElement.addEventListener('submit', savePlayerConfig)
 
 startNewGameBtn.addEventListener('click', startNewGame)
+
+for (const field of gameFieldElements) {
+    field.addEventListener('click', addSymbol)
+}
